@@ -1,0 +1,129 @@
+.ContactWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+}
+
+/* =========================
+   Section 1: Contact Info
+========================= */
+.Section1 {
+  display: none; /* hidden by default on mobile/tablet */
+  background-color: #000;
+  color: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  width: 100%;
+  max-width: 300px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem; /* increased font size */
+}
+
+.Section1 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Section1 ul li {
+  margin-bottom: 18px; /* more spacing */
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between icon and text */
+}
+
+.Section1 ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: inherit; /* take icon color if desired or separate */
+}
+.Section1 ul li {
+  margin-bottom: 18px; 
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+/* Icon sizes */
+.icon {
+  font-size: 1.4rem;
+  transition: transform 0.2s ease, color 0.2s ease; /* smooth hover */
+}
+
+.Section1 ul li .icon-phone { color: #25d366; }       /* Phone: green */
+.Section1 ul li .icon-mail { color: #ff4500; }        /* Email: reddish/orange */
+.Section1 ul li .icon-whatsapp { color: #25D366; }   /* WhatsApp: WhatsApp green */
+.Section1 ul li .icon-linkedin { color: #0A66C2; }   /* LinkedIn blue */
+.Section1 ul li .icon-reddit { color: #FF4500; }     /* Reddit orange */
+.Section1 ul li .icon-github { color: #333; }
+
+/* Hover effect for interactivity */
+.Section1 ul li:hover .icon {
+  transform: scale(1.2);
+}
+/* =========================
+   Section 2: Form
+========================= */
+.Section2 {
+  background-color: whitesmoke;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px; /* fixes mobile/tablet width */
+  box-sizing: border-box;
+}
+
+/* Flex layout for desktop */
+@media (min-width: 992px) {
+  .ContactWrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .Section1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .Section2 {
+    flex: 1;
+  }
+}
+
+/* =========================
+   Form Styles
+========================= */
+.input-container { position: relative; margin-bottom: 20px; }
+.input-container input, .input-container textarea {
+  width: 100%; padding: 12px; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 8px;
+  background: transparent; outline: none; resize: none; transition: all 0.3s ease;
+}
+.input-container input:focus, .input-container textarea:focus {
+  border-color: darkorange; box-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
+}
+.input-container label {
+  position: absolute; left: 12px; top: 12px; color: #666; font-size: 1rem;
+  pointer-events: none; transition: 0.3s ease all;
+}
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container textarea:focus + label,
+.input-container textarea:not(:placeholder-shown) + label {
+  top: -8px; left: 10px; font-size: 0.85rem; color: darkorange; background: whitesmoke; padding: 0 5px; border-radius: 5px;
+}
+textarea { min-height: 120px; line-height: 1.5; padding-top: 35px; padding-bottom: 15px; }
+.Submit { background-color: darkorange; color: white; border: none; border-radius: 8px; padding: 12px 20px; font-size: 1rem; cursor: pointer; width: 100%; transition: all 0.3s ease; }
+.Submit:hover { background-color: #ff9b32; box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4); }
+.Submit.sending { cursor: wait; }
+.Submit.success { background-color: #4caf50; color: #fff; }
+.Submit.error { background-color: #f44336; color: #fff; }

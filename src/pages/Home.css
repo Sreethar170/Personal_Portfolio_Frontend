@@ -1,0 +1,291 @@
+/* =============================
+   Global Reset
+============================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+/* =============================
+   Intro Section
+============================= */
+.Intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  padding: 8% 10%;
+  gap: 50px;
+  position: relative;
+}
+
+.Profile {
+  display: flex;
+  justify-content: center;
+}
+
+.Profile .pic {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.Inter_2 {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.brand-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #ff4d00, #ff4d00);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+  animation: glowMove 4s infinite linear;
+  text-align: center;
+}
+
+@keyframes glowMove {
+  0% { text-shadow: 0 0 10px rgba(255, 140, 0, 0.4); }
+  50% { text-shadow: 0 0 25px rgba(255, 140, 0, 0.8); }
+  100% { text-shadow: 0 0 10px rgba(255, 140, 0, 0.4); }
+}
+
+.IntoDetials {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgb(198, 193, 193);
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =============================
+   Resume Button
+============================= */
+.Resume {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.ResumeButton {
+  background: linear-gradient(90deg, #ff4d00, #ff7300);
+  border: none;
+  width: 220px;
+  height: 52px;
+  border-radius: 30px;
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ResumeButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 77, 0, 0.4);
+}
+
+.download-icon,
+.done-icon {
+  font-size: 1.2rem;
+}
+
+.spinner {
+  font-size: 1.1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.ResumeButton.downloading {
+  background: linear-gradient(90deg, #ff9500, #ffaa00);
+  color: #fff;
+  pointer-events: none;
+}
+
+.ResumeButton.done {
+  background: linear-gradient(90deg, #0f9d58, #34a853);
+  color: #fff;
+}
+
+.ResumeButton span,
+.ResumeButton svg {
+  transition: all 0.3s ease;
+}
+
+/* =============================
+   About Section
+============================= */
+.About {
+  margin: 8% 10%;
+}
+
+.AboutTitle {
+  font-size: 2.8rem;
+  text-align: center;
+  color: #ff4d00;
+  margin-bottom: 30px;
+}
+
+.AboutDetials {
+  border-radius: 15px;
+  padding: 4%;
+  background-color: whitesmoke;
+  border: 5px solid whitesmoke;
+  color: rgb(40, 39, 39);
+  text-align: justify;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  box-shadow: 0 0 25px rgba(255, 77, 0, 0.15);
+}
+
+/* =============================
+   Skills Section
+============================= */
+.Skills {
+  margin: 6% 10%;
+}
+
+.SkillsTitle {
+  font-size: 2.8rem;
+  text-align: center;
+  color: #ff4d00;
+  margin-bottom: 40px;
+}
+
+.SkillsDetials {
+  border-radius: 15px;
+  padding: 3%;
+  background-color: whitesmoke;
+  color: rgb(40, 39, 39);
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: auto;
+  max-width: 1000px;
+  box-shadow: 0 0 20px rgba(255, 77, 0, 0.15);
+}
+
+/* =============================
+   Contact Section
+============================= */
+.ContactTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #ff4d00;
+  margin: 60px 0 30px 0;
+}
+
+.CT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =============================
+   Responsive Media Queries
+============================= */
+
+/* Small Mobile */
+@media (max-width: 700px) {
+  .Intro { grid-template-columns: 1fr; padding: 20% 6%; }
+  .brand-name { font-size: 2rem; }
+  .IntoDetials { font-size: 0.95rem; }
+  .Profile .pic { width: 85%; margin: 0 auto 30px; }
+  .ResumeButton { width: 140px; height: 42px; font-size: 13px; }
+  .About, .Skills { margin: 12% 6%; }
+  .AboutTitle, .SkillsTitle, .ContactTitle { font-size: 2rem; }
+  .AboutDetials, .SkillsDetials { font-size: 0.95rem; padding: 5%; }
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .Intro { grid-template-columns: 1fr 1fr; gap: 40px; padding: 10% 8%; }
+  .brand-name { font-size: 2.5rem; }
+  .IntoDetials { font-size: 1rem; text-align: left; }
+  .Profile .pic { width: 100%; max-width: 350px; margin-top: 50px; }
+  .About, .Skills { margin: 10% 8%; }
+  .AboutTitle, .SkillsTitle, .ContactTitle { font-size: 2.3rem; }
+}
+
+/* Large Desktop */
+@media (min-width: 1201px) {
+  .Intro {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    padding: 8% 12%;
+    min-height: 100vh;
+  }
+
+  /* Profile pinned to bottom-left of Intro section */
+  .Profile {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    width: auto;
+    height: auto;
+   
+  }
+
+  .Profile .pic {
+    width: 420px;
+    height: auto;
+    border-radius: 12px;
+    transform: none;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .Profile .pic:hover { transform: scale(1.05); }
+
+  /* Center text and balance with image */
+  .Inter_2 {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    transform: translateX(100px);
+  }
+
+  .brand-name { font-size: 4rem; text-align: center; }
+  .IntoDetials {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    max-width: 850px;
+    text-align: center;
+    margin: 20px auto;
+  }
+
+  .Resume { justify-content: center; }
+  .ResumeButton { width: 200px; height: 55px; font-size: 16px; }
+
+  .AboutTitle, .SkillsTitle, .ContactTitle { font-size: 3rem; }
+}

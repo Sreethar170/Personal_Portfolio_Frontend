@@ -1,0 +1,55 @@
+.Footer{
+    text-align: center;
+    margin: 50px;    
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; /* black background */
+    color: #fff; /* default text color white */
+    padding-bottom: 30px;
+}
+
+.FooterContacts {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Rows for layout */
+.FooterRow {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Phone & email text white */
+.contact-item {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Brand-colored icons */
+.icon-phone { color: #25D366; }
+.icon-mail { color: #D44638; }
+.icon-whatsapp { color: #25D366; cursor: pointer; }
+.icon-linkedin { color: #0A66C2; cursor: pointer; }
+.icon-reddit { color: #FF4500; cursor: pointer; }
+.icon-github { color: #333; cursor: pointer; }
+
+.icon {
+    font-size: 1.5rem;
+}
+
+/* Hide FooterContacts on desktop */
+@media (min-width: 992px) {
+    .FooterContacts {
+        display: none;
+    }
+}

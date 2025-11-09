@@ -1,0 +1,185 @@
+/* ================================
+   BASE NAVBAR STYLES
+================================== */
+.navbar {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between; /* logo left, menu right */
+  align-items: center;
+  padding: 15px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* Logo styling */
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #00bcd4;
+}
+
+/* ================================
+   NAV LINKS
+================================== */
+.nav-link {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  pointer-events: auto;
+}
+
+.nav-link a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nav-link a:hover {
+  color: darkorange;
+}
+
+.nav-link a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ff4d00;
+  transition: width 0.3s ease;
+}
+
+.nav-link a:hover::after {
+  width: 100%;
+}
+
+/* ================================
+   MENU ICON (Hamburger)
+================================== */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.menu-icon span {
+  display: block;
+  height: 3px;
+  background-color: #ff4d00;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ================================
+   MOBILE VIEW (Tablets + Phones)
+================================== */
+@media (max-width: 900px) {
+  .navbar {
+    justify-content: space-between; /* keep order */
+    padding: 15px 6%;
+    flex-direction: row; /* ✅ logo stays left, menu icon right */
+  }
+
+  .menu-icon {
+    display: flex;
+    order: 2; /* menu icon stays on the right */
+  }
+
+  .nav-link {
+    position: fixed;
+    top: 70px;
+    right: 5%;
+    width: 75%;
+    max-width: 320px;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #222;
+    border-radius: 15px;
+    padding: 25px 0;
+    gap: 20px;
+    box-shadow: 0 0 25px rgba(255, 77, 0, 0.3);
+    transform: translateY(-200%);
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    pointer-events: none;
+  }
+
+  .nav-link.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1000;
+  }
+}
+
+/* ================================
+   SMALL MOBILE DEVICES
+================================== */
+@media (max-width: 480px) {
+  .nav-link {
+    width: 90%;
+    max-width: 260px;
+    top: 65px;
+    right: 5%;
+  }
+
+  .nav-link a {
+    font-size: 16px;
+  }
+
+  .menu-icon {
+    width: 24px;
+    height: 18px;
+  }
+
+  .menu-icon span {
+    height: 2.5px;
+  }
+}
+
+/* ================================
+   ULTRA-WIDE DESKTOP SCREENS
+================================== */
+@media (min-width: 1600px) {
+  .navbar {
+    padding: 25px 10%;
+  }
+
+  .nav-link a {
+    font-size: 1.2rem;
+  }
+}
+
+/* ================================
+   MENU ICON ANIMATION
+================================== */
+.menu-icon.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-icon.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-icon.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
