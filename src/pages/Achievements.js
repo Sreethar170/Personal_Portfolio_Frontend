@@ -1,8 +1,6 @@
 import './Achievements.css'
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-
-import Profile from '../Assets/Profile/me-removebg-preview.png';
 import Bannari_Amman  from '../Assets/Achievements/Bannari Amman Institute of Technology.jpg';
 import CIT_PC  from '../Assets/Achievements/CIT_PC.jpeg';
 import Kongu from '../Assets/Achievements/Kongu.jpg';

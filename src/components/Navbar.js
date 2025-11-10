@@ -8,10 +8,10 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
   const closeMenu = () => setMenuOpen(false);
 
-  // Scroll to hash section
+  // ✅ Smooth scroll for hash links
   useEffect(() => {
     if (location.hash) {
       const section = document.querySelector(location.hash);
@@ -19,58 +19,53 @@ const Navbar = () => {
     }
   }, [location]);
 
-  // Handle navigation clicks
+  // ✅ Safe route navigation with scroll handling
   const handleNavClick = (hash) => {
     closeMenu();
     if (location.pathname === "/") {
       const section = document.querySelector(hash);
       if (section) section.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate("/" + hash);
+      navigate(`/${hash}`);
     }
   };
 
-  // Triple-click logo for secret page
+  // ✅ Triple click secret page with prompt validation
   const handleLogoClick = () => {
-  setClicks(prev => prev + 1);
-  setTimeout(() => setClicks(0), 5000); // reset after 5 sec
+    setClicks((prev) => {
+      const newClicks = prev + 1;
 
-  if (clicks + 1 === 3) {
-    window.open("/secret", "_blank"); 
-    const username = prompt("Enter Username:");
-    const password = prompt("Enter secret password:");
-    if (password === "a" && username=="a") { // replace with actual
-      // Open secret page in new tab
-    } else {
-      alert("Incorrect password!");
-    }
-    setClicks(0);
-  }
-};
+      if (newClicks === 3) {
+        const username = prompt("Enter Username:");
+        const password = prompt("Enter secret password:");
+        if (username === "a" && password === "a") {
+          window.open("/secret", "_blank");
+        } else {
+          alert("Incorrect username or password!");
+        }
+        return 0; // reset after validation
+      }
+
+      // reset if user doesn’t complete within 5 sec
+      setTimeout(() => setClicks(0), 5000);
+      return newClicks;
+    });
+  };
 
   return (
     <div className="nav">
       <nav className="navbar">
-        <div className="logo" onClick={handleLogoClick}>Sreethar</div>
+        <div className="logo" onClick={handleLogoClick}>
+          Sreethar
+        </div>
+
         <ul className={`nav-link ${menuOpen ? "active" : ""}`}>
-          <li className="Menu">
-            <a onClick={closeMenu} href="/">Home</a>
-          </li>
-          <li className="Menu">
-            <a onClick={() => handleNavClick("#About")}>About</a>
-          </li>
-          <li className="Menu">
-            <a onClick={() => handleNavClick("#Project")}>Project</a>
-          </li>
-          <li className="Menu">
-            <a onClick={() => handleNavClick("#Experience")}>Experience</a>
-          </li>
-          <li className="Menu">
-            <a onClick={closeMenu} href="/gallery">Gallery</a>
-          </li>
-          <li className="Menu">
-            <a onClick={() => handleNavClick("#Contacts")}>Contact</a>
-          </li>
+          <li className="Menu"><a href="/" onClick={closeMenu}>Home</a></li>
+          <li className="Menu"><a onClick={() => handleNavClick("#About")}>About</a></li>
+          <li className="Menu"><a onClick={() => handleNavClick("#Project")}>Project</a></li>
+          <li className="Menu"><a onClick={() => handleNavClick("#Experience")}>Experience</a></li>
+          <li className="Menu"><a href="/gallery" onClick={closeMenu}>Gallery</a></li>
+          <li className="Menu"><a onClick={() => handleNavClick("#Contacts")}>Contact</a></li>
         </ul>
 
         <div
