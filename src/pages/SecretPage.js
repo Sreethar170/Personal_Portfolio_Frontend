@@ -79,7 +79,7 @@ const SecretPage = () => {
 
         if (data.sole) {
           message =
-            "Hello my love 💖! This is your private gallery only for you.";
+            "Hello my love, every heartbeat reminds me of you, every smile you give lights up my world. I made this just for you, to tell you that my life is infinitely better with you in it—and I can’t imagine a future without holding your hand through it all. Will you be mine, forever and always? 💖";
         } else if (data.isAdmin) {
           message = "Admin access granted. Handle this portal carefully.";
         } else {
