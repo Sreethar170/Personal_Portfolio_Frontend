@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import "./SecretPage.css";
-const backendUrl = "https://personal-portfolio-backend-1vh9.onrender.com";
+const backendUrl = "http://localhost:8000";
 const SecretPage = () => {
   const [preLoginMsg, setPreLoginMsg] = useState("");
   const [showLogin, setShowLogin] = useState(false);
@@ -54,22 +55,25 @@ const [activeFolder, setActiveFolder] = useState("public");
       setLoadingUsers(false);
     }
   };
+  const fetchFiles = async (type) => {
+    try {
+      const res = await fetch(
+        `${backendUrl}/api/list-files?username=${username}&password=${password}&type=${type}`
+      );
+      const data = await res.json();
+      if (data.success) {
+        setFiles(data.files);
+        setActiveFolder(type);
+      }
+    } catch {
+      console.error("Failed to load files");
+    }
+  };
 
-const fetchFiles = async (type = "public") => {
-  try {
-    const res = await fetch(
-      `${backendUrl}/api/list-files?type=${type}&admin=${isAdmin}`
-    );
-    const data = await res.json();
-    if (data.success) setFiles(data.files);
-    else console.error("Failed to fetch files");
-  } catch (err) {
-    console.error("Error fetching files:", err);
-  }
-};
  useEffect(() => {
     fetchFiles();
   }, []);
+  
 
   const filtered =
     filter === "images"
@@ -431,16 +435,17 @@ const handleDeleteUser = async (usernameToDelete) => {
       file.mimeType.startsWith("image/") ? (
         <div key={file.id} className="gallery-item">
           <img
-            src={`${backendUrl}${file.url}`}
+            src={`${backendUrl}/api/files?url=${encodeURIComponent(file.url)}`}
             alt={file.name}
             loading="lazy"
-            onClick={() => openZoom(`${backendUrl}${file.url}`)}
+            onClick={() =>setZoomedImg(`${backendUrl}/api/files?url=${encodeURIComponent(file.url)}`)}
           />
         </div>
       ) : (
         <div key={file.id} className="gallery-item video-item">
           <video controls preload="metadata">
-            <source src={`${backendUrl}${file.url}`} type={file.mimeType} />
+           <source
+            src={`${backendUrl}/api/files?url=${encodeURIComponent(file.url)}`}type={file.mimeType}/>
           </video>
         </div>
       )
@@ -463,4 +468,4 @@ const handleDeleteUser = async (usernameToDelete) => {
   );
 };
 
-export default SecretPage;
+export default SecretPage; 
