@@ -38,7 +38,7 @@ const Navbar = () => {
       if (newClicks === 3) {
         const username = prompt("Enter Username:");
         const password = prompt("Enter secret password:");
-        if (username === "loveyouda" && password === "chello") {
+        if (username === "love" && password === "you") {
           window.open("/secret", "_blank");
         } else {
           alert("Incorrect username or password!");
