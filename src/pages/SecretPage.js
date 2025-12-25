@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "./SecretPage.css";
-const backendUrl = "https://personal-portfolio-backend-1vh9.onrender.com";
+const backendUrl = "http://localhost:8000";
 const SecretPage = () => {
   const [preLoginMsg, setPreLoginMsg] = useState("");
   const [showLogin, setShowLogin] = useState(false);
@@ -29,6 +29,7 @@ const SecretPage = () => {
   const [loadingUsers, setLoadingUsers] = useState(false);
   const [userError, setUserError] = useState("");
 const [activeFolder, setActiveFolder] = useState("public");
+const [access, setAccess] = useState({});
 
 
   const handleToggleUsers = async () => {
@@ -55,20 +56,18 @@ const [activeFolder, setActiveFolder] = useState("public");
       setLoadingUsers(false);
     }
   };
-  const fetchFiles = async (type) => {
-    try {
-      const res = await fetch(
-        `${backendUrl}/api/list-files?username=${username}&password=${password}&type=${type}`
-      );
-      const data = await res.json();
-      if (data.success) {
-        setFiles(data.files);
-        setActiveFolder(type);
-      }
-    } catch {
-      console.error("Failed to load files");
-    }
-  };
+  const fetchFiles = async (scriptUrl) => {
+  try {
+    const res = await fetch(
+      `${backendUrl}/api/list-files?scriptUrl=${encodeURIComponent(scriptUrl)}`
+    );
+    const data = await res.json();
+    if (data.success) setFiles(data.files);
+  } catch {
+    console.error("Failed to load files");
+  }
+};
+
 
  useEffect(() => {
     fetchFiles();
@@ -124,7 +123,15 @@ const [activeFolder, setActiveFolder] = useState("public");
         setLoggedIn(true);
         setIsAdmin(data.isAdmin || false);
          setSoleUser(data.sole || false);
+         setAccess(data.access);
         let message;
+        if (data.access.publicUrl) {
+    fetchFiles(data.access.publicUrl);
+    setActiveFolder("public");
+  } else if (data.access.privateUrl) {
+    fetchFiles(data.access.privateUrl);
+    setActiveFolder("private");
+  }
         if (data.sole) {
           message = "Hello my love, every heartbeat reminds me of you, every smile you give lights up my world. I made this just for you, to tell you that my life is infinitely better with you in it—and I can’t imagine a future without holding your hand through it all. Will you be mine, forever and always? 💖";
         } else if (data.isAdmin) {
@@ -403,26 +410,41 @@ const handleDeleteUser = async (usernameToDelete) => {
   {isAdmin && (
     <div className="folder-buttons">
     <button
-      onClick={() => { fetchFiles("public"); setActiveFolder("public"); }}
+     onClick={() => { fetchFiles(access.publicUrl); 
+      setActiveFolder("public");
+    }}
       className={activeFolder === "public" ? "active" : ""}
     >
       Public
     </button>
 
     <button
-      onClick={() => { fetchFiles("private"); setActiveFolder("private"); }}
+      onClick={() => { fetchFiles(access.privateUrl); 
+        setActiveFolder("private");
+    }}
       className={activeFolder === "private" ? "active" : ""}
     >
       Private
     </button>
   </div>
   )}
-
-  {!isAdmin && (
+   {!isAdmin && !soleUser &&(
     <div className="folder-buttons">
-      <button onClick={() => fetchFiles("public")}>Public</button>
+      <button 
+      onClick={() => { fetchFiles(access.privateUrl); 
+        setActiveFolder("private");
+    }}>Private</button>
     </div>
   )}
+  {!isAdmin && !soleUser &&(
+    <div className="folder-buttons">
+      <button 
+      onClick={() => { fetchFiles(access.publicUrl); 
+      setActiveFolder("public");
+    }}>Public</button>
+    </div>
+  )}
+  
 
   <div className="filter-buttons">
     <button onClick={() => setFilter("all")} className={filter === "all" ? "active" : ""}>All</button>
