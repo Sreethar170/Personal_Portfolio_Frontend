@@ -146,6 +146,7 @@ const [access, setAccess] = useState({});
           "Credentials invalid. Locking session immediately—don’t come back without permission.";
         setShowLogin(false);
         typeText(invalidMsg, setPreLoginMsg, () => setShowLogin(true));
+        window.close()
       }
     } catch (err) {
       setError("Server error: " + err.message);

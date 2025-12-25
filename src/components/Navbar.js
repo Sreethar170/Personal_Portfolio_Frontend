@@ -32,25 +32,29 @@ const Navbar = () => {
 
   // ✅ Triple click secret page with prompt validation
   const handleLogoClick = () => {
-    setClicks((prev) => {
-      const newClicks = prev + 1;
+  setClicks((prev) => {
+    const newClicks = prev + 1;
 
-      if (newClicks === 3) {
-        const username = prompt("Enter Username:");
-        const password = prompt("Enter secret password:");
-        if (username === "love" && password === "you") {
-          window.open("/secret", "_blank");
-        } else {
-          alert("Incorrect username or password!");
-        }
-        return 0; // reset after validation
+    if (newClicks === 3) {
+      const username = prompt("Username sollu da 👀");
+      const password = prompt("Password um marakama podu 😏");
+
+      if (username === "love" && password === "you") {
+        window.open("/secret", "_blank");
+      } else {
+        alert(
+          "Dei! Username / Password thappu 🤦‍♂️\n" +
+          "Correct ah potta dhan ulla viduven 😎"
+        );
       }
+      return 0;
+    }
 
-      // reset if user doesn’t complete within 5 sec
-      setTimeout(() => setClicks(0), 5000);
-      return newClicks;
-    });
-  };
+    setTimeout(() => setClicks(0), 5000);
+    return newClicks;
+  });
+};
+
 
   return (
     <div className="nav">
