@@ -30,6 +30,38 @@ const SecretPage = () => {
   const [userError, setUserError] = useState("");
 const [activeFolder, setActiveFolder] = useState("public");
 const [access, setAccess] = useState({});
+const soleMessages = [
+  "Hello di en heartbeat 😌 En heart ‘lub-dub’ nu adikkaradhu kooda un name solli dhan. Nee siricha podhum, en world full HD color-a maarudhu. Indha page full-ah unakaga dhan… lifetime subscription oda. En kooda old-age varaikum tea kudikka ready-ah? ☕❤️",
+  "Hey loosu ponnu 💕 En life-la Google irundhalum, answer ellam nee dhan. Nee illama future imagine panna try panninen… system hang aagiduchu 😵 So simple question: En kooda forever iruka ready-ah illa repeat la miss aaga poriya? 😏",
+  "Hello chellam 🫶 En phone battery vida nee important. Nee smile panna, en stress ellam ‘delete’ aagudhu. Indha secret page-um, en secret happiness-um nee dhan. Kai pidichu life full-ah nadakka varuviya… escape button illa 💍😉",
+  "Ei madam ❤️ En heart-ku OTP vandhudhu… adhu un name dhan. Nee pesuna podhum, en bad day-um Sunday-a maarudhu. Indha page unakaga, en life-um unakaga. Forever nu option choose pannalama? No cancel policy 😌",
+  "Hello di queen 👑 En life-la problem irundha solution nee. Sandai potalum, 5 nimisham kooda un mela kovam irukka maatengudhu 😅 Indha secret page oru reason-ku… That reason is YOU. Forever en partner-a irupa? 💖",
+  "Heyyy heartbeat 🥹 En heart speedometer-la one level extra irundha, adhu unakaga dhan. Nee siricha podhum, en future full bright-a theriyudhu. Indha page unakaga create panninen… But en whole life-ah unakaga reserve panniten. Deal confirm ah? 😍",
+  "Hello di cutie 😏 En life movie-la heroine nee dhan. Background music-um, climax-um ellame nee irundha perfect. Indha page oru small gift… Aana en love unlimited offer. Accept pannuviya illa thinking mode-la irukiya? 😜",
+  "Ei ❤️ En heart enna pannudhu nu ketta… ‘Un kooda future plan pannudhu’ nu sollum. Indha page secret-ah irundhalum, En feelings romba open-ah irukku. En kai pidichu lifetime update-a irupa? 💍😌",
+  "Hello en world 🌍 Nee vandha appuram, en life-la dark mode off. Smile-um peace-um free-ah kedachiduchu. Indha page-um, en heart-um password protected… Password nee dhan. Forever unlock pannalama? 😎❤️",
+  "Heyyy love 😌 En life-la risk edutha ore decision nee… Aana adhu dhan best decision. Indha page small-ah irukkalam, But en love romba perusu. So simple-ah ketkaren… En kooda forever irupa illa miss pannuva? 😏💖"
+];
+const sole = [
+  "“Indha page unakaga panna special ah… password-um illa, permission-um illa — en heart-la already nee dhaan owner.” 💖",
+  "“Indha page unakaga… en life-oda best decision nee nu solla oru chinna try.” ❤️✨",
+];
+const adminMessages = [
+  "Admin sir vandhutaru 😎 Careful-ah handle pannunga!",
+  "Power irukku nu over scene podaadha boss 😂",
+  "Admin access granted. System unna paakudhu 👀",
+  "Wrong move pannina… log irukku da 😏"
+];
+
+const guestMessages = [
+  "Idhu secret page da 🤫 Loose talk venam",
+  "Username password yaar kitayum sollaadha 😤",
+  "Ulla vandhutta, scene podaama irunga 😌",
+  "Private page la public behaviour venam 😎"
+];
+const getRandomMessage = (messages) =>
+  messages[Math.floor(Math.random() * messages.length)];
+
 
 
   const handleToggleUsers = async () => {
@@ -101,7 +133,7 @@ const [access, setAccess] = useState({});
 
   useEffect(() => {
     const message =
-      "This secret webpage is very private. Only a few people have access here.";
+       "Romba private area da 😎 Access irundha dhan ulla varalam.";
     typeText(message, setPreLoginMsg, () => setShowLogin(true));
     return () => clearTimeout(typingTimeout.current);
   }, []);
@@ -133,20 +165,19 @@ const [access, setAccess] = useState({});
     setActiveFolder("private");
   }
         if (data.sole) {
-          message = "Hello my love, every heartbeat reminds me of you, every smile you give lights up my world. I made this just for you, to tell you that my life is infinitely better with you in it—and I can’t imagine a future without holding your hand through it all. Will you be mine, forever and always? 💖";
-        } else if (data.isAdmin) {
-          message = "Admin access granted. Handle this portal carefully.";
-        } else {
-          message = "Welcome to your secret webpage. Keep your credentials private.";
-        }
+  message =getRandomMessage(sole) +getRandomMessage(soleMessages);
+} else if (data.isAdmin) {
+  message = getRandomMessage(adminMessages);
+} else {
+  message = getRandomMessage(guestMessages);
+}
         typeText(message, setPostLoginMsg, () => setShowGallery(true));
         fetchFiles();
       } else {
         const invalidMsg =
-          "Credentials invalid. Locking session immediately—don’t come back without permission.";
+           "Indha page unakku illa nu system solludhu 🤭 So Session lock panniten. Permission illama thirumba varadha."
         setShowLogin(false);
         typeText(invalidMsg, setPreLoginMsg, () => setShowLogin(true));
-        window.close()
       }
     } catch (err) {
       setError("Server error: " + err.message);
@@ -429,7 +460,7 @@ const handleDeleteUser = async (usernameToDelete) => {
     </button>
   </div>
   )}
-   {!isAdmin && !soleUser &&(
+   { soleUser &&(
     <div className="folder-buttons">
       <button 
       onClick={() => { fetchFiles(access.privateUrl); 

@@ -5,7 +5,7 @@ function Footer() {
     return (
         <div className="Footer">
             <p>
-                © 2025 SREETHAR N J. All rights reserved.<br />
+                © 2026 SREETHAR N J. All rights reserved.<br />
                 Designed by Sreethar
             </p>
 
