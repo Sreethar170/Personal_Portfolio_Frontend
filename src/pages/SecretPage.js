@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "./SecretPage.css";
-const backendUrl = "https://personal-portfolio-backend-1vh9.onrender.com";
+const backendUrl = "https://personal-portfolio-frontend-sreethar170.vercel.app/";
 const SecretPage = () => {
   const [preLoginMsg, setPreLoginMsg] = useState("");
   const [showLogin, setShowLogin] = useState(false);
