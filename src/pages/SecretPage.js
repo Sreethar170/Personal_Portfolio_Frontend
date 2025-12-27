@@ -152,23 +152,7 @@ const getRandomMessage = (messages) =>
   }, []);
 
 
-  const takeScreenshot = async () => {
-  const res = await fetch(`${backendUrl}/api/screenshot`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      url: "https://your-vercel-site.com/secret-page",
-    }),
-  });
-
-  const blob = await res.blob();
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "screenshot.png";
-  link.click();
-};
-
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
