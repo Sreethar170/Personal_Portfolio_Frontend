@@ -6,7 +6,7 @@ import data from "./galleryData";
 const Gallery = () => {
   const [filter, setFilter] = useState("All");
   const [filteredData, setFilteredData] = useState([]);
-
+    const [loading, setLoading] = useState(true);
   useEffect(() => {
     // Step 1: Clear old images first
     setFilteredData([]);
@@ -22,7 +22,10 @@ const Gallery = () => {
     // Cleanup on unmount or next filter change
     return () => clearTimeout(timeout);
   }, [filter]);
-
+ useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     
     <div className="gallery-container" id="Gallery">
