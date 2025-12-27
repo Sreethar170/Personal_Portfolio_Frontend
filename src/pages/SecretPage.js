@@ -59,6 +59,23 @@ const guestMessages = [
   "Ulla vandhutta, scene podaama irunga 😌",
   "Private page la public behaviour venam 😎"
 ];
+
+const Welcome = [
+  "Romba private area da 😎 Access irundha dhan ulla varalam.",
+  "Private gallery. Permission irundha paaru. Illa na poidu",
+ "This is a private gallery. Content is personal. Viewer discretion advised",
+ "You are entering a personal space. Respect it or exit",
+ "This page is locked. Curiosity unlocked it",
+ "Private memories ahead. No sharing. No nonsense",
+];
+const logout = [
+  "Logout pannita. Ippo nadandhathu ellam marandhudu 😌",
+  "Ithu varaikkum porumai irundhadhuku nandri",
+ "Ellam paathuta. Ippo po",
+ "Logout done. Screenshot eduthirukka maata nu namburen",
+ "You’ve logged out. Thanks for respecting the space",
+];
+
 const getRandomMessage = (messages) =>
   messages[Math.floor(Math.random() * messages.length)];
 
@@ -129,11 +146,28 @@ const getRandomMessage = (messages) =>
   };
 
   useEffect(() => {
-    const message =
-       "Romba private area da 😎 Access irundha dhan ulla varalam.";
+    const message =getRandomMessage(Welcome);
     typeText(message, setPreLoginMsg, () => setShowLogin(true));
     return () => clearTimeout(typingTimeout.current);
   }, []);
+
+
+  const takeScreenshot = async () => {
+  const res = await fetch(`${backendUrl}/api/screenshot`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      url: "https://your-vercel-site.com/secret-page",
+    }),
+  });
+
+  const blob = await res.blob();
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "screenshot.png";
+  link.click();
+};
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -191,8 +225,7 @@ const getRandomMessage = (messages) =>
     setPassword("");
     setError("");
     setSuccessMsg("");
-    const logoutMessage =
-      "Thanks for leaving—don’t worry, we’ll try to manage without your expert opinions.";
+    const logoutMessage = getRandomMessage(logout);;
     setShowLogin(false);
     typeText(logoutMessage, setPreLoginMsg, () => setShowLogin(true));
   };
