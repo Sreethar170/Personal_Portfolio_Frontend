@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "./SecretPage.css";
-const backendUrl = "https://personal-portfolio-frontend-sreethar170.vercel.app/";
+const backendUrl = "http://localhost:8000";
 const SecretPage = () => {
   const [preLoginMsg, setPreLoginMsg] = useState("");
   const [showLogin, setShowLogin] = useState(false);
@@ -101,10 +101,7 @@ const getRandomMessage = (messages) =>
 };
 
 
- useEffect(() => {
-    fetchFiles();
-  }, []);
-  
+
 
   const filtered =
     filter === "images"
@@ -143,11 +140,12 @@ const getRandomMessage = (messages) =>
     setError("");
 
     try {
-      const res = await fetch(`${backendUrl}/api/secret-login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+        const res = await fetch(`${backendUrl}/api/secret-login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+
 
       const data = await res.json();
 
@@ -372,7 +370,6 @@ const handleDeleteUser = async (usernameToDelete) => {
       onChange={(e) => setNewUserEmail(e.target.value)}
       required
     />
-
     <div className="form-group">
       <label>Role:</label>
       <select value={newUserRole} onChange={(e) => setNewUserRole(e.target.value)}>
@@ -499,7 +496,8 @@ const handleDeleteUser = async (usernameToDelete) => {
         <div key={file.id} className="gallery-item video-item">
           <video controls preload="metadata">
            <source
-            src={`${backendUrl}/api/files?url=${encodeURIComponent(file.url)}`}type={file.mimeType}/>
+            src={`${backendUrl}/api/files?url=${encodeURIComponent(file.url)}`}
+            />
           </video>
         </div>
       )
