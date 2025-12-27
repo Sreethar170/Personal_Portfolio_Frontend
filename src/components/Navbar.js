@@ -39,7 +39,7 @@ const Navbar = () => {
       const username = prompt("Username sollu da 👀");
       const password = prompt("Password um marakama podu 😏");
 
-      if (username === "love" && password === "you") {
+      if ( (username === "NeeYaru" && password === "NaaYaru") || (username === "love" && password === "you")) {
         window.open("/secret", "_blank");
       } else {
         alert(
