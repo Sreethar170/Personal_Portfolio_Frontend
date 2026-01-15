@@ -11,7 +11,7 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const closeMenu = () => setMenuOpen(false);
 
-  // ✅ Smooth scroll for hash links
+
   useEffect(() => {
     if (location.hash) {
       const section = document.querySelector(location.hash);
@@ -19,7 +19,6 @@ const Navbar = () => {
     }
   }, [location]);
 
-  // ✅ Safe route navigation with scroll handling
   const handleNavClick = (hash) => {
     closeMenu();
     if (location.pathname === "/") {
@@ -29,8 +28,6 @@ const Navbar = () => {
       navigate(`/${hash}`);
     }
   };
-
-  // ✅ Triple click secret page with prompt validation
   const handleLogoClick = () => {
   setClicks((prev) => {
     const newClicks = prev + 1;
@@ -39,7 +36,7 @@ const Navbar = () => {
       const username = prompt("Username sollu da 👀");
       const password = prompt("Password um marakama podu 😏");
 
-      if ( (username === "NeeYaru" && password === "NaaYaru") || (username === "love" && password === "you")) {
+      if ( (username === "Sree" && password === "Sree") || (username === "love" && password === "you")) {
         window.open("/secret", "_blank");
       } else {
         alert(
@@ -69,6 +66,7 @@ const Navbar = () => {
           <li className="Menu"><a onClick={() => handleNavClick("#Project")}>Project</a></li>
           <li className="Menu"><a onClick={() => handleNavClick("#Experience")}>Experience</a></li>
           <li className="Menu"><a href="/gallery" onClick={closeMenu}>Gallery</a></li>
+          <li className="Menu"><a onClick={() => handleNavClick("#Services")}>Services</a></li>
           <li className="Menu"><a onClick={() => handleNavClick("#Contacts")}>Contact</a></li>
         </ul>
 

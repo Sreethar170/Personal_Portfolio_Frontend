@@ -7,6 +7,7 @@ import Experiance from "../pages/Experiance";
 import Contact from "../pages/Contact";
 import Achivements from "./Achievements";
 import Projects from "./Projects";
+import Services from "./Services";
 import ResumeButton from "./ResumeButton";
 
 function Home() {
@@ -94,7 +95,9 @@ function Home() {
       <section id="Achievements">
         <Achivements />
       </section>
-
+      <section id="Services">
+        <Services />
+      </section>
       {/* Contact */}
       <section id="Contacts" className="Contacts">
         <h2 className="ContactTitle">Get in Touch</h2>
