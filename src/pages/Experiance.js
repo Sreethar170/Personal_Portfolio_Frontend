@@ -12,7 +12,7 @@ const Experiance =()=>{
             title: "Youth United Council of India (YUCI)",
             date: "Jan 2025 - Oct 2025",
             description :"Head of Department – ECE (Jan 2025 – Oct 2025, Coimbatore, Tamil Nadu) Led department-level initiatives, managed teams, and coordinated student engagement programs focused on innovation and leadership.",
-            description_1:"Campus Tech Coordinator (Dec 2024 – Oct 2025, Remote – Chennai, Tamil Nadu) Organized and supported campus-wide technical events, promoting collaboration, event planning, and personal development initiatives.",
+            description_1:"Campus Technical Coordinator (Dec 2024 – Oct 2025, Remote – Chennai, Tamil Nadu) Organized and supported campus-wide technical events, promoting collaboration, event planning, and personal development initiatives.",
 
         },{
             title: "In-Plant Training – BSNL (Telecommunication)",
