@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "./SecretPage.css";
-const backendUrl = "http://localhost:8000";
+const backendUrl = "http://localhost:800";
 const SecretPage = () => {
   const [preLoginMsg, setPreLoginMsg] = useState("");
   const [showLogin, setShowLogin] = useState(false);
