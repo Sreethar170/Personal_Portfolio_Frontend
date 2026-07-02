@@ -49,8 +49,7 @@ const Navbar = () => {
           window.open("/secret", "_blank");
         } else {
           alert(
-            "Dei! Username / Password thappu 🤦‍♂️\n" +
-              "Correct ah potta dhan ulla viduven 😎"
+            "Dei! Username / Password thappu 🤦‍♂️\nCorrect ah potta dhan ulla viduven 😎"
           );
         }
 

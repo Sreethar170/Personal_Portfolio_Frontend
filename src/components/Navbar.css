@@ -6,7 +6,7 @@
   background: #000;
   color: #fff;
   display: flex;
-  justify-content: space-between; /* logo left, menu right */
+  justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
   position: fixed;
@@ -15,7 +15,7 @@
   z-index: 999;
 }
 
-/* Logo styling */
+/* Logo */
 .logo {
   font-size: 1.6rem;
   font-weight: 700;
@@ -39,7 +39,13 @@
   pointer-events: auto;
 }
 
-.nav-link a {
+.nav-link li {
+  list-style: none;
+}
+
+/* Link + Button common style */
+.nav-link a,
+.nav-link button {
   text-decoration: none;
   font-size: 20px;
   color: white;
@@ -48,13 +54,20 @@
   position: relative;
   cursor: pointer;
   z-index: 10;
+  background: none;
+  border: none;
+  outline: none;
 }
 
-.nav-link a:hover {
+/* Hover */
+.nav-link a:hover,
+.nav-link button:hover {
   color: darkorange;
 }
 
-.nav-link a::after {
+/* Underline effect */
+.nav-link a::after,
+.nav-link button::after {
   content: "";
   position: absolute;
   bottom: -5px;
@@ -65,12 +78,13 @@
   transition: width 0.3s ease;
 }
 
-.nav-link a:hover::after {
+.nav-link a:hover::after,
+.nav-link button:hover::after {
   width: 100%;
 }
 
 /* ================================
-   MENU ICON (Hamburger)
+   MENU ICON
 ================================== */
 .menu-icon {
   display: none;
@@ -91,18 +105,18 @@
 }
 
 /* ================================
-   MOBILE VIEW (Tablets + Phones)
+   MOBILE VIEW
 ================================== */
 @media (max-width: 900px) {
   .navbar {
-    justify-content: space-between; /* keep order */
+    justify-content: space-between;
     padding: 15px 6%;
-    flex-direction: row; /* ✅ logo stays left, menu icon right */
+    flex-direction: row;
   }
 
   .menu-icon {
     display: flex;
-    order: 2; /* menu icon stays on the right */
+    order: 2;
   }
 
   .nav-link {
@@ -134,7 +148,7 @@
 }
 
 /* ================================
-   SMALL MOBILE DEVICES
+   SMALL MOBILE
 ================================== */
 @media (max-width: 480px) {
   .nav-link {
@@ -144,7 +158,8 @@
     right: 5%;
   }
 
-  .nav-link a {
+  .nav-link a,
+  .nav-link button {
     font-size: 16px;
   }
 
@@ -159,14 +174,15 @@
 }
 
 /* ================================
-   ULTRA-WIDE DESKTOP SCREENS
+   ULTRA-WIDE DESKTOP
 ================================== */
 @media (min-width: 1600px) {
   .navbar {
     padding: 25px 10%;
   }
 
-  .nav-link a {
+  .nav-link a,
+  .nav-link button {
     font-size: 1.2rem;
   }
 }
@@ -177,9 +193,11 @@
 .menu-icon.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .menu-icon.active span:nth-child(2) {
   opacity: 0;
 }
+
 .menu-icon.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }

@@ -6,34 +6,37 @@ import data from "./galleryData";
 const Gallery = () => {
   const [filter, setFilter] = useState("All");
   const [filteredData, setFilteredData] = useState([]);
-    const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Step 1: Clear old images first
+    // Clear old images first
     setFilteredData([]);
 
-    // Step 2: After a short delay, set new images
+    // Load filtered images after delay
     const timeout = setTimeout(() => {
       const filtered = [...data]
         .filter((item) => filter === "All" || item.category === filter)
         .sort((a, b) => a.id - b.id);
-      setFilteredData(filtered);
-    }, 100); // 100ms gives smooth clearing before loading new items
 
-    // Cleanup on unmount or next filter change
+      setFilteredData(filtered);
+    }, 100);
+
     return () => clearTimeout(timeout);
   }, [filter]);
- useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+
   return (
-    
     <div className="gallery-container" id="Gallery">
       <h1 className="gallery-title">Gallery</h1>
 
       {/* Filter Buttons */}
       <div className="filter-buttons">
-        {["All", "Photos", "Certificate", "Projects", "Internship", "Courses"].map((btn) => (
+        {[
+          "All",
+          "Photos",
+          "Certificate",
+          "Projects",
+          "Internship",
+          "Courses",
+        ].map((btn) => (
           <button
             key={btn}
             className={filter === btn ? "active" : ""}
