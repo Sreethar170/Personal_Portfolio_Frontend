@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [, setLogoClicks] = useState(0);
+  const [logoClicks, setLogoClicks] = useState(0);
 
   const location = useLocation();
   const navigate = useNavigate();
