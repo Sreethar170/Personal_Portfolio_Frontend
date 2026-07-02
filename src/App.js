@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Gallery from "./pages/Gallery";
 import Footer from './components/Footer';
 import SecretPage from "./pages/SecretPage";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+
 
 function AppContent() {
   const location = useLocation();
@@ -21,7 +21,6 @@ function AppContent() {
         <Route path="/gallery" element={<Gallery />} />
          <Route path="/secret" element={<SecretPage />} />  
       </Routes>
-      <SpeedInsights />
     </>
   );
 }
