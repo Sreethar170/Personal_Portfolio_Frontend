@@ -67,7 +67,14 @@ const Welcome = React.useMemo(() => [
   "You are entering a personal space. Respect it or exit",
   "This page is locked. Curiosity unlocked it",
   "Private memories ahead. No sharing. No nonsense",
-], [Welcome]);
+], []);
+
+useEffect(() => {
+  const message = getRandomMessage(Welcome);
+  typeText(message, setPreLoginMsg, () => setShowLogin(true));
+
+  return () => clearTimeout(typingTimeout.current);
+}, [Welcome]);
 const logout = [
   "Logout pannita. Ippo nadandhathu ellam marandhudu 😌",
   "Ithu varaikkum porumai irundhadhuku nandri",
@@ -141,12 +148,6 @@ const getRandomMessage = (messages) =>
     typeNext();
   };
 
-  useEffect(() => {
-  const message = getRandomMessage(Welcome);
-  typeText(message, setPreLoginMsg, () => setShowLogin(true));
-
-  return () => clearTimeout(typingTimeout.current);
-}, [Welcome]);
 
 
   
@@ -279,7 +280,7 @@ const handleDeleteUser = async (usernameToDelete) => {
     alert("Server error: " + err.message);
   }
 };
-  const openZoom = (img) => setZoomedImg(img);
+  
   const closeZoom = () => setZoomedImg(null);
 
   return (
